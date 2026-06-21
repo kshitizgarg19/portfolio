@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Kshitiz Garg — Quantitative Trader</title>
+  <meta name="description" content="The portfolio of Kshitiz Garg — quantitative trader. An interactive 3D showcase of trading systems, HFT, and machine learning for the markets." />
+  <meta property="og:title" content="Kshitiz Garg — Quantitative Trader" />
+  <meta property="og:description" content="An interactive 3D showcase of trading systems, HFT, and ML for the markets." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#04050a" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Three.js + addons as ES modules -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+  <!-- GSAP (animation) + ScrollTrigger -->
+  <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+  <!-- Custom cursor -->
+  <div id="cursor-dot" aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+
+  <!-- Film grain + scanline atmosphere -->
+  <div id="grain" aria-hidden="true"></div>
+  <div id="vignette" aria-hidden="true"></div>
+
+  <!-- The 3D world lives here -->
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+  <!-- Top navigation -->
+  <header class="nav" id="nav">
+    <a href="#hero" class="nav-logo" data-cursor="hover">
+      <span class="logo-bracket">&lt;</span>KG<span class="logo-bracket">/&gt;</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#about" data-cursor="hover">About</a>
+      <a href="#skills" data-cursor="hover">Skills</a>
+      <a href="#projects" data-cursor="hover">Work</a>
+      <a href="#contact" data-cursor="hover">Contact</a>
+    </nav>
+    <a href="#contact" class="nav-cta" data-cursor="hover">Let's talk</a>
+  </header>
+
+  <!-- Scroll progress -->
+  <div class="scroll-progress"><span id="scroll-progress-fill"></span></div>
+
+  <main id="content">
+
+    <!-- HERO -->
+    <section id="hero" class="section section-hero">
+      <div class="hero-availability"><span class="dot"></span><span data-availability></span></div>
+      <h1 class="hero-name">
+        <span class="line" data-split>Kshitiz</span>
+        <span class="line outline" data-split>Garg</span>
+      </h1>
+      <div class="hero-role">
+        <span class="role-prefix">&gt;</span>
+        <span id="role-typewriter"></span><span class="caret">▌</span>
+      </div>
+      <p class="hero-tagline" data-tagline></p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary magnetic" data-cursor="hover">
+          <span>See the work</span>
+          <svg viewBox="0 0 24 24" width="18" height="18"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#contact" class="btn btn-ghost magnetic" data-cursor="hover"><span>Get in touch</span></a>
+      </div>
+      <div class="scroll-hint" data-cursor="hover">
+        <span>Scroll</span>
+        <span class="scroll-line"></span>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section section-about">
+      <div class="section-head">
+        <span class="section-index">01</span>
+        <h2 class="section-title" data-split-words>About</h2>
+      </div>
+      <div class="about-grid">
+        <p class="about-text" data-about-text></p>
+        <ul class="about-facts" data-about-facts></ul>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section section-skills">
+      <div class="section-head">
+        <span class="section-index">02</span>
+        <h2 class="section-title" data-split-words>Toolkit</h2>
+      </div>
+      <div class="skills-grid" data-skills></div>
+      <div class="marquee" aria-hidden="true"><div class="marquee-track" data-marquee></div></div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section section-projects">
+      <div class="section-head">
+        <span class="section-index">03</span>
+        <h2 class="section-title" data-split-words>Selected Work</h2>
+      </div>
+      <div class="projects" data-projects></div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="section section-exp">
+      <div class="section-head">
+        <span class="section-index">04</span>
+        <h2 class="section-title" data-split-words>Journey</h2>
+      </div>
+      <div class="timeline" data-timeline></div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section section-contact">
+      <div class="section-head center">
+        <span class="section-index">05</span>
+        <h2 class="section-title big" data-split-words>Let's build something</h2>
+      </div>
+      <a class="contact-email magnetic" data-email-link data-cursor="hover"></a>
+      <div class="contact-socials" data-socials></div>
+      <footer class="site-footer">
+        <span>© 2026 · Kshitiz Garg</span>
+        <span class="footer-pulse">Quantitative Trader</span>
+      </footer>
+    </section>
+
+  </main>
+
+  <script src="config.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

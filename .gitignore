@@ -1,0 +1,9 @@
+# OS
+.DS_Store
+
+# Deps / logs
+node_modules/
+*.log
+
+# Vercel
+.vercel

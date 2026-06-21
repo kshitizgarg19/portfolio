@@ -522,7 +522,7 @@ async function initThree() {
     const t = clock.getElapsedTime();
     mxs += (tmx - mxs) * 0.05; mys += (tmy - mys) * 0.05;
     viz.intensity += ((viz.speaking ? 1 : 0) - viz.intensity) * 0.08;
-    const present = 1 - clamp(scrollN / 0.13, 0, 1);   // figure fully present at top, gone once you scroll into content
+    const present = 1 - clamp(scrollY / (innerHeight * 0.9), 0, 1);  // fade over the first viewport (device-independent)
 
     // idle life
     torso.scale.y = 1 + Math.sin(t * 1.6) * 0.012;
@@ -554,10 +554,10 @@ async function initThree() {
     // drop it lower + shrink it so the name stays clean above it.
     const portrait = camera.aspect < 0.9;
     const lookX = clamp(1.75 - (camera.aspect - 0.5) * 1.2, 0.25, 1.75);
-    const drop = portrait ? (0.9 - camera.aspect) * 1.7 : 0;
-    stage.scale.setScalar(portrait ? 0.92 : 1.05);
-    camera.position.set(lookX * 0.45 + mxs * 0.5, 1.34 - mys * 0.4 + drop * 0.5 + scrollN * 2.4, 4.6 + drop * 0.7 - scrollN * 0.6);
-    camera.lookAt(lookX, 1.05 + drop + scrollN * 1.2, 0);
+    const drop = portrait ? (0.9 - camera.aspect) * 2.8 : 0;        // push figure well below the hero text on phones
+    stage.scale.setScalar(portrait ? 0.82 : 1.05);                 // smaller on phones
+    camera.position.set(lookX * 0.45 + mxs * 0.5, 1.34 - mys * 0.4 + drop * 0.35 + scrollN * 2.4, 4.6 + drop * 1.0 - scrollN * 0.6);
+    camera.lookAt(lookX, 1.05 + drop * 1.15 + scrollN * 1.2, 0);
 
     composer ? composer.render() : renderer.render(scene, camera);
   }
